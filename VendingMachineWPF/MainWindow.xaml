@@ -1,0 +1,117 @@
+﻿<Window x:Class="VendingMachineWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VendingMachineWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="Transparent"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStyle="None"  BorderThickness="0" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Border Background="#FFFFFF" BorderBrush="#5443C3" BorderThickness="4" CornerRadius="25" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Background="#5443C3" Width="170" CornerRadius="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="0 10 0 0" Foreground="White" FontSize="25" FontFamily="Cascadia Code"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        <StackPanel Orientation="Horizontal">
+                        <Image Source="https://img.icons8.com/ios/20/FFFFFF/shopping-bag--v1.png"></Image>
+                            <TextBlock>OnShop</TextBlock>
+                        </StackPanel>
+                    </TextBlock>
+                    <ListView Margin="0 70 0 0" Foreground="LightGray" Grid.Row="1">
+                        <ListViewItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Home" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                    <TextBlock Background="Transparent" Text="Home" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                                </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="HockeyPuck" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <TextBlock Background="Transparent" Text="Home" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <TextBlock Background="Transparent" Text="Wallet" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Person" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <TextBlock Background="Transparent" Text="User Profile" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Settings" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <TextBlock Background="Transparent" Text="Settings" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0 0 0 30" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+                        <materialDesign:PackIcon Foreground="LightGray" Kind="Logout" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                        <TextBlock Foreground="LightGray" Background="Transparent" Text="Log Out" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border CornerRadius="8" Width="250" Background="#DDD9F2" Padding="3" Margin="50 9 0 0" HorizontalAlignment="Left" >
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="SearchTxt"  materialDesign:HintAssist.Hint="Search Product" Foreground="#8578C7" ></TextBox>
+                            <Image Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="https://img.icons8.com/ios-filled/24/7A6DB8/search--v1.png" Margin="5"  Grid.Column="1" Height="15"></Image>
+                        </Grid>
+                    </Border>
+                    <StackPanel Margin="0 10 20 0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Image Cursor="Hand" Margin="10 0 0 0" Height="20" Width="20" Source="https://img.icons8.com/external-those-icons-fill-those-icons/50/5443C1/external-wallet-money-currency-those-icons-fill-those-icons-2.png"></Image>
+                        <Image Cursor="Hand" Margin="10 0 0 0" Height="20" Width="20" Source="https://img.icons8.com/ios-filled/50/5443C1/sms.png"></Image>
+                        <Image Cursor="Hand" Margin="10 0 0 0" Height="20" Width="20" Source="https://img.icons8.com/material-rounded/50/5443C1/appointment-reminders.png"></Image>
+                        <Ellipse Cursor="Hand" Width="35" Height="35" Margin="10 0 0 0">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="Images/Nicat.jpg">
+                                </ImageBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Cursor="Hand" Margin="10 0 0 0" Foreground="Gray" FontSize="13" VerticalAlignment="Center" FontFamily="Cascadia Code" >Nicat Ceferli</TextBlock>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+
+    </Border>
+</Window>

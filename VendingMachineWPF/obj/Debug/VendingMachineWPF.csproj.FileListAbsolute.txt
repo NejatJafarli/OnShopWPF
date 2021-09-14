@@ -20,3 +20,5 @@ C:\Users\Nejat Jafarli\source\repos\VendingMachineWPF\VendingMachineWPF\obj\Debu
 C:\Users\Nejat Jafarli\source\repos\VendingMachineWPF\VendingMachineWPF\obj\Debug\VendingMachineWPF.csproj.CoreCompileInputs.cache
 C:\Users\Nejat Jafarli\source\repos\VendingMachineWPF\VendingMachineWPF\obj\Debug\VendingMachineWPF.exe
 C:\Users\Nejat Jafarli\source\repos\VendingMachineWPF\VendingMachineWPF\obj\Debug\VendingMachineWPF.pdb
+C:\Users\Nejat Jafarli\source\repos\VendingMachineWPF\VendingMachineWPF\obj\Debug\ProductUC.g.cs
+C:\Users\Nejat Jafarli\source\repos\VendingMachineWPF\VendingMachineWPF\obj\Debug\ProductUC.baml

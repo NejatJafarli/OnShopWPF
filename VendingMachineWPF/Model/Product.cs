@@ -12,20 +12,14 @@ namespace VendingMachineWPF.Model
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		private int id;
-		public int Id
-		{
-			get { return id; }
-			set { id = value; OnPropertyChanged(); }
-		}
 		private string name;
 		public string Name
 		{
 			get { return name; }
 			set { name = value; OnPropertyChanged(); }
 		}
-		private double price;
-		public double Price
+		private string price;
+		public string Price
 		{
 			get { return price; }
 			set { price = value; OnPropertyChanged(); }

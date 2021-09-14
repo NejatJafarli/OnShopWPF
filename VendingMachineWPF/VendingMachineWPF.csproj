@@ -78,9 +78,16 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Product.cs" />
+    <Compile Include="ProductUC.xaml.cs">
+      <DependentUpon>ProductUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,6 +116,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Nicat.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\snickers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fanta.png" />
+    <Resource Include="Images\kola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cheetos.png" />
+    <Resource Include="Images\kartof.png" />
+    <Resource Include="Images\lays.png" />
+    <Resource Include="Images\mars.png" />
+    <Resource Include="Images\qened.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />

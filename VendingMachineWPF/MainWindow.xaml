@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachineWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,8 +15,10 @@ xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
      TextOptions.TextRenderingMode="Auto"
      Background="Transparent"
      FontFamily="{DynamicResource MaterialDesignFont}"
-         WindowStyle="None"  BorderThickness="0" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-    <Border Background="#FFFFFF" BorderBrush="#5443C3" BorderThickness="4" CornerRadius="25" >
+         WindowStyle="None"  BorderThickness="0" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        ResizeMode="CanResizeWithGrip"
+        >
+    <Border Background="#E2E2E2" BorderBrush="#5443C3" BorderThickness="4" CornerRadius="25" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -35,14 +37,16 @@ xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                             <TextBlock>OnShop</TextBlock>
                         </StackPanel>
                     </TextBlock>
-                    <ListView Margin="0 70 0 0" Foreground="LightGray" Grid.Row="1">
+                    <ListView Margin="0 70 0 0" Foreground="LightGray" Grid.Row="1"
+                              ScrollViewer.CanContentScroll="False"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListViewItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Home" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
-                                    <TextBlock Background="Transparent" Text="Home" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
-                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Home" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <TextBlock Background="Transparent" Text="Home" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
                         </ListViewItem>
-                        <ListViewItem>
+                        <ListViewItem IsSelected="True" Selector.IsSelected="True" >
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="basket" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
                                 <TextBlock Background="Transparent" Text="Products" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
@@ -67,10 +71,14 @@ xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                             </StackPanel>
                         </ListViewItem>
                     </ListView>
-                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0 0 0 30" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
-                        <materialDesign:PackIcon Foreground="LightGray" Kind="Logout" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
-                        <TextBlock Foreground="LightGray" Background="Transparent" Text="Log Out" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
-                    </StackPanel>
+                    <ListView  Foreground="LightGray" Grid.Row="2" Margin="0 0 0 30" >
+                        <ListViewItem >
+                            <StackPanel Orientation="Horizontal"  MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+                                <materialDesign:PackIcon Foreground="LightGray" Kind="Logout" Width="30" Height="30"  VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <TextBlock Foreground="LightGray" Background="Transparent" Text="Log Out" Margin="10 0 0 0" FontSize="20"  VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
                 </Grid>
 
             </Border>
@@ -82,16 +90,16 @@ xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border CornerRadius="8" Width="250" Background="#DDD9F2" Padding="3" Margin="50 9 0 0" HorizontalAlignment="Left" >
+                    <Border CornerRadius="8"  Background="#DDD9F2" Padding="3" Margin="50 9 40 0" >
 
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Name="SearchTxt"  materialDesign:HintAssist.Hint="Search Product" Foreground="#8578C7" ></TextBox>
+                            <TextBox Name="SearchTxt" TextChanged="SearchTxt_TextChanged"  materialDesign:HintAssist.Hint="Search Product" Foreground="#8578C7" ></TextBox>
                             <Image Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="https://img.icons8.com/ios-filled/24/7A6DB8/search--v1.png" Margin="5"  Grid.Column="1" Height="15"></Image>
                         </Grid>
                     </Border>
@@ -105,10 +113,13 @@ xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                                 </ImageBrush>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <TextBlock Cursor="Hand" Margin="10 0 0 0" Foreground="Gray" FontSize="13" VerticalAlignment="Center" FontFamily="Cascadia Code" >Nicat Ceferli</TextBlock>
+                        <TextBlock Cursor="Hand" Margin="10 0 0 0" Foreground="Black" FontSize="13" VerticalAlignment="Center" FontFamily="Cascadia Code" >Nicat Ceferli</TextBlock>
                     </StackPanel>
-
                 </Grid>
+                <ScrollViewer Margin="13 15 0 0"  Grid.Row="1" >
+                    <WrapPanel Name="ProductsPanel" Background="LightGray">
+                    </WrapPanel>
+                </ScrollViewer>
             </Grid>
         </Grid>
 

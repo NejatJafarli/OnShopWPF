@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,15 @@ namespace VendingMachineWPF
 	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
 		public ObservableCollection<Product> Products { get; set; }
+
+		private ProductUC selectedProduct;
+
+		public ProductUC SelectedProduct
+		{
+			get { return selectedProduct; }
+			set { selectedProduct = value; OnPropertyRaised(); }
+		}
+
 
 		private ObservableCollection<ProductUC> productsUC;
 		public ObservableCollection<ProductUC> ProductsUC
@@ -84,58 +94,66 @@ namespace VendingMachineWPF
 			Product P1 = new Product
 			{
 				Name = "Kola",
-				Price = "1 AZN",
+				Price = 1,
 				Quantity = 25,
 				ImagePath = "Images/kola.png"
 			};
 			Product P2 = new Product
 			{
 				Name = "Fanta",
-				Price = "1 AZN",
+				Price = 1,
 				Quantity = 25,
 				ImagePath = "Images/fanta.png"
 			};
 			Product P3 = new Product
 			{
 				Name = "Sprite",
-				Price = "1 AZN",
+				Price = 1,
 				Quantity = 35,
 				ImagePath = "Images/sprite.png"
 			};
 			Product P4 = new Product
 			{
-				Name = "Cheetos",
-				Price = "1.20 AZN",
-				Quantity = 50,
-				ImagePath = "Images/cheetos.png"
+				Name = "Pepsi",
+				Price = 1,
+				Quantity = 45,
+				ImagePath = "Images/pepsi.png"
 			};
+
 			Product P5 = new Product
 			{
 				Name = "Kartoska Fri",
-				Price = "0.80 AZN",
+				Price = 0.80,
 				Quantity = 50,
 				ImagePath = "Images/kartof.png"
 			};
 			Product P6 = new Product
 			{
 				Name = "Lays",
-				Price = "2.50 AZN",
+				Price = 2.50,
 				Quantity = 50,
 				ImagePath = "Images/lays.png"
 			};
 			Product P7 = new Product
 			{
 				Name = "Qened",
-				Price = "19.90 AZN",
+				Price = 19.90,
 				Quantity = 50,
 				ImagePath = "Images/qened.png"
 			};
 			Product P8 = new Product
 			{
 				Name = "Snickers",
-				Price = "0.70 AZN",
+				Price = 0.70,
 				Quantity = 25,
 				ImagePath = "Images/snickers.png"
+			};
+			Product P9 = new Product
+			{
+				Name = "Cheetos",
+				Price = 1.20,
+				Quantity = 50,
+				ImagePath = "Images/cheetos.png"
 			};
 			Products.Add(P1);
 			Products.Add(P2);
@@ -143,6 +161,7 @@ namespace VendingMachineWPF
 			Products.Add(P4);
 			Products.Add(P5);
 			Products.Add(P6);
+			Products.Add(P9);
 			Products.Add(P7);
 			Products.Add(P8);
 
@@ -150,7 +169,7 @@ namespace VendingMachineWPF
 
 			for (int i = 0; i < ProductsUC.Count; i++)
 			{
-				ProductsUC[i].Window.Width = 135;
+				ProductsUC[i].Window.Width = 130;
 				ProductsUC[i].Window.Height = 180;
 
 				ProductsUC[i].Window.Margin = new Thickness(3, 0, 0, 0);
@@ -188,7 +207,7 @@ namespace VendingMachineWPF
 					{
 						ProductsUC.Add(new ProductUC { Product = Temp[i] });
 
-						ProductsUC[i].Window.Width = 135;
+						ProductsUC[i].Window.Width = 130;
 						ProductsUC[i].Window.Height = 180;
 
 						ProductsUC[i].Window.Margin = new Thickness(3, 0, 0, 0);
@@ -197,10 +216,10 @@ namespace VendingMachineWPF
 				else
 				{
 					ProductsUC = new ObservableCollection<ProductUC>();
-					for (int i = 0; i < Products.Count; i++) 
+					for (int i = 0; i < Products.Count; i++)
 					{
 						ProductsUC.Add(new ProductUC { Product = Products[i] });
-						ProductsUC[i].Window.Width = 135;
+						ProductsUC[i].Window.Width = 130;
 						ProductsUC[i].Window.Height = 180;
 
 						ProductsUC[i].Window.Margin = new Thickness(3, 0, 0, 0);
@@ -208,5 +227,62 @@ namespace VendingMachineWPF
 				}
 			}
 		}
+
+
+		private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (sender is ListBox list)
+			{
+				if (list.SelectedItem is ProductUC product)
+				{
+					SelectedProduct = product;
+					if (product.EditPanelsIsOpen)
+					{
+						EditPanel.Visibility = Visibility.Visible;
+					}
+					else
+						EditPanel.Visibility = Visibility.Collapsed;
+				}
+			}
+		}
+
+		private void EditPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (selectedProduct is null)
+			{
+			EditPanel.Visibility = Visibility.Collapsed;
+
+			}
+			else
+			{
+			EditPanel.Visibility = Visibility.Collapsed;
+
+			selectedProduct.EditPanelsIsOpen = false;
+			}
+		}
+
+		private void Image_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.Bitmap))
+			{
+				e.Effects = DragDropEffects.Copy;
+			}
+			else
+			{
+				e.Effects = DragDropEffects.None;
+			}
+		}
+		private void Image_Drop(object sender, DragEventArgs e)
+		{
+			string path="";
+			string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+			foreach (var item in files)
+			{
+				path = item;
+			}
+
+			selectedProduct.Product.ImagePath = path;
+		}
+
 	}
 }

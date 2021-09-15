@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -21,10 +22,12 @@ namespace VendingMachineWPF
 	/// <summary>
 	/// Interaction logic for ProductUC.xaml
 	/// </summary>
-	public partial class ProductUC : UserControl,INotifyPropertyChanged
+	public partial class ProductUC : UserControl, INotifyPropertyChanged
 	{
 		private Product product;
 
+
+		public bool EditPanelsIsOpen { get; set; }
 		public Product Product
 		{
 			get { return product; }
@@ -43,5 +46,12 @@ namespace VendingMachineWPF
 			InitializeComponent();
 			DataContext = this;
 		}
+
+		private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			EditPanelsIsOpen = true;
+		}
+
+		
 	}
 }

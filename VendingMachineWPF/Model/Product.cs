@@ -18,8 +18,8 @@ namespace VendingMachineWPF.Model
 			get { return name; }
 			set { name = value; OnPropertyChanged(); }
 		}
-		private string price;
-		public string Price
+		private double price;
+		public double Price
 		{
 			get { return price; }
 			set { price = value; OnPropertyChanged(); }

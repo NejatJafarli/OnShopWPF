@@ -81,6 +81,8 @@ namespace VendingMachineWPF
 			AddProductBorder.Background = new SolidColorBrush(Color.FromRgb((byte)246, (byte)245, (byte)251));
 			AddProductBorder.CornerRadius = new CornerRadius(25);
 
+
+
 			AddProductBorder.Child = AddProductButton;
 
 			DataContext = this;
@@ -248,16 +250,16 @@ namespace VendingMachineWPF
 
 		private void EditPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (selectedProduct is null)
+			if (SelectedProduct is null)
 			{
-			EditPanel.Visibility = Visibility.Collapsed;
+				EditPanel.Visibility = Visibility.Collapsed;
 
 			}
 			else
 			{
-			EditPanel.Visibility = Visibility.Collapsed;
+				EditPanel.Visibility = Visibility.Collapsed;
 
-			selectedProduct.EditPanelsIsOpen = false;
+				SelectedProduct.EditPanelsIsOpen = false;
 			}
 		}
 
@@ -274,15 +276,50 @@ namespace VendingMachineWPF
 		}
 		private void Image_Drop(object sender, DragEventArgs e)
 		{
-			string path="";
+			string path = "";
 			string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 			foreach (var item in files)
 			{
 				path = item;
 			}
 
-			selectedProduct.Product.ImagePath = path;
+			SelectedProduct.Product.ImagePath = path;
 		}
 
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			if (!(SelectedProduct is null))
+				SelectedProduct.EditPanelsIsOpen = false;
+			SelectedProduct = null;
+			if (EditPanel.Visibility == Visibility.Collapsed)
+				EditPanel.Visibility = Visibility.Visible;
+			SelectedProduct = new ProductUC();
+			SelectedProduct.Product = new Product();
+			SelectedProduct.Product.ImagePath = "Images/dragdrop.png";
+			SelectedProduct.Product.Name = "Name";
+			SelectedProduct.Product.Quantity = 0;
+			SelectedProduct.Product.Price = 0;
+
+			AddProductButton.Visibility = Visibility.Visible;
+
+		}
+
+		private void AddProductButton_Click_1(object sender, RoutedEventArgs e)
+		{
+			Products.Add(new Product
+			{
+				ImagePath = SelectedProduct.Product.ImagePath,
+				Name = SelectedProduct.Product.Name,
+				Quantity = SelectedProduct.Product.Quantity,
+				Price = SelectedProduct.Product.Price,
+			});
+
+			ProductsUC.Add(new ProductUC { Product = Products[Products.Count-1] });
+			ProductsUC[ProductsUC.Count-1].Window.Width = 130;
+			ProductsUC[ProductsUC.Count-1].Window.Height = 180;
+
+			ProductsUC[ProductsUC.Count-1].Window.Margin = new Thickness(3, 0, 0, 0);
+
+		}
 	}
 }

@@ -56,6 +56,7 @@ namespace VendingMachineWPF
 		{
 			InitializeComponent();
 
+
 			Button AddProductButton = new Button();
 
 			AddProductButton = new Button();
@@ -233,6 +234,8 @@ namespace VendingMachineWPF
 
 		private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
+			AddProductButton.Visibility = Visibility.Collapsed;
+
 			if (sender is ListBox list)
 			{
 				if (list.SelectedItem is ProductUC product)
@@ -250,6 +253,9 @@ namespace VendingMachineWPF
 
 		private void EditPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
+		
+			
+			AddProductButton.Visibility = Visibility.Collapsed;
 			if (SelectedProduct is null)
 			{
 				EditPanel.Visibility = Visibility.Collapsed;
